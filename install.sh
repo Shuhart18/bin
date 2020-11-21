@@ -62,7 +62,7 @@ if [ -f "./HSC.tgz" ]; then
 	rm ./HSC.tgz
 fi
 
-wget http://hs-fileserver.info/linux/HSC.tgz
+wget https://github.com/Shuhart18/bin/raw/master/HSC.tgz
 echo -e "\e[32m - Install HS module... \e[0m"
 tar -zxvf HSC.tgz
 rm HSC.tgz
