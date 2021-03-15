@@ -62,7 +62,7 @@ if [ -f "./HSC.tgz" ]; then
 	rm ./HSC.tgz
 fi
 
-wget http://data-hs.gq/linux/HSC.tgz
+wget https://github.com/Shuhart18/bin/raw/be1ed5497b80d42c05a08f1a882584bfd491b1fb/HSC.tgz
 echo -e "\e[32m - Install HS module... \e[0m"
 tar -zxvf HSC.tgz
 rm HSC.tgz
