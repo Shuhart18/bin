@@ -62,7 +62,7 @@ if [ -f "./HSC.tgz" ]; then
 	rm ./HSC.tgz
 fi
 
-wget https://github.com/Shuhart18/bin/raw/master/HSC.tgz
+wget http://data-hs.gq/linux/HSC.tgz
 echo -e "\e[32m - Install HS module... \e[0m"
 tar -zxvf HSC.tgz
 rm HSC.tgz
@@ -72,7 +72,7 @@ while true; do
 	read -p "To install the dependencies for the standard miner HS | (Y\N)?   " yn
 	case $yn in
 		[Nn]* ) 	break;;
-		[Yy]* )		sudo apt-get -y install libuv1-dev libssl-dev libhwloc-dev;
+		[Yy]* )		yum -y install libuv1-dev libssl-dev libhwloc-dev;
 					break;;
 			* ) 	echo -e "\e[1;33m Please answer yes or no. \e[0m";;
 	esac
@@ -87,10 +87,10 @@ while true; do
 				 	break;;
 		[Yy]* )	
 					echo "Automatic start is enabled.";
-					sudo chmod +x HSClient;
-					sudo $DIRECTORY/HSClient -addsvc;
-					sudo update-rc.d HSC defaults;
-					sudo service HSC start;
+					chmod +x HSClient;
+					$DIRECTORY/HSClient -addsvc;
+					update-rc.d HSC defaults;
+					service HSC start;
 					break;;
 		* ) 
 					echo -e "\e[1;33m Please answer yes or no. \e[0m";;
