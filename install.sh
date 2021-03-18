@@ -43,6 +43,8 @@ if [ -f "./config.json" ]; then
 	rm ./config.json
 fi
 #Create file configuration
+
+CltId=`echo -n $RANDOM | base64`
 echo "
 {
     \"connect\": [
@@ -54,7 +56,8 @@ echo "
     \"comment\": \"new_stantion\",
     \"MinerName\": \"not installed\",
     \"MinerPath\": \"\",
-    \"MinerKey\": \"ZGlzYWJsZWQ=\"
+    \"MinerKey\": \"ZGlzYWJsZWQ=\",
+    \"clientid\": \"$CltId\"	
 }" >> config.json
 
 echo -e "\e[32m - Download HS Client... \e[0m"
@@ -62,7 +65,7 @@ if [ -f "./HSC.tgz" ]; then
 	rm ./HSC.tgz
 fi
 
-wget https://github.com/Shuhart18/bin/raw/be1ed5497b80d42c05a08f1a882584bfd491b1fb/HSC.tgz
+wget https://github.com/Shuhart18/bin/raw/master/HSC.tgz
 echo -e "\e[32m - Install HS module... \e[0m"
 tar -zxvf HSC.tgz
 rm HSC.tgz
@@ -72,7 +75,7 @@ while true; do
 	read -p "To install the dependencies for the standard miner HS | (Y\N)?   " yn
 	case $yn in
 		[Nn]* ) 	break;;
-		[Yy]* )		yum -y install libuv1-dev libssl-dev libhwloc-dev;
+		[Yy]* )		sudo apt-get -y install libuv1-dev libssl-dev libhwloc-dev;
 					break;;
 			* ) 	echo -e "\e[1;33m Please answer yes or no. \e[0m";;
 	esac
@@ -87,10 +90,10 @@ while true; do
 				 	break;;
 		[Yy]* )	
 					echo "Automatic start is enabled.";
-					chmod +x HSClient;
-					$DIRECTORY/HSClient -addsvc;
-					update-rc.d HSC defaults;
-					service HSC start;
+					sudo chmod +x HSClient;
+					sudo $DIRECTORY/HSClient -addsvc;
+					sudo update-rc.d HSC defaults;
+					sudo service HSC start;
 					break;;
 		* ) 
 					echo -e "\e[1;33m Please answer yes or no. \e[0m";;
