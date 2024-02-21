@@ -1,0 +1,3 @@
+emergency list:
+autonomus.tk:8080
+217.29.52.7:443
